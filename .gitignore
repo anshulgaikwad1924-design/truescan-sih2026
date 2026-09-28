@@ -1,0 +1,21 @@
+# Frontend dependencies
+frontend/node_modules/
+frontend/dist/
+
+# Backend dependencies
+backend/venv/
+backend/__pycache__/
+backend/.pytest_cache/
+
+# Environment variables
+.env
+frontend/.env
+backend/.env
+
+# Uploads directory (don't commit user images)
+backend/uploads/
+
+# IDE/System files
+.vscode/
+.DS_Store
+*.log
