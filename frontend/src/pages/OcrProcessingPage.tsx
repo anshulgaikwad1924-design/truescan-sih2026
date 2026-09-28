@@ -15,7 +15,7 @@ export default function OcrProcessingPage() {
 
     const checkStatus = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/documents/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/documents/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch document status');
         }

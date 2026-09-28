@@ -133,7 +133,7 @@ export default function UploadPage() {
       // A more robust solution would use XMLHttpRequest, but this is sufficient for small files.
       setUploadProgress(30);
       
-      const uploadResponse = await fetch('http://localhost:8000/documents/upload', {
+      const uploadResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/documents/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -150,7 +150,7 @@ export default function UploadPage() {
 
       // 2. Trigger Extraction Pipeline (Stage 5)
       setStatus('processing');
-      const extractResponse = await fetch(`http://localhost:8000/extraction/${docId}`, {
+      const extractResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/extraction/${docId}`, {
         method: 'POST',
       });
       

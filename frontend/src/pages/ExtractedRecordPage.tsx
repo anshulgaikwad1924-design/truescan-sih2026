@@ -41,7 +41,7 @@ export default function ExtractedRecordPage() {
 
   const fetchDoc = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/documents/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/documents/${id}`);
       if (!response.ok) throw new Error('Failed to fetch document');
       const data = await response.json();
       setDoc(data);
@@ -59,21 +59,21 @@ export default function ExtractedRecordPage() {
 
   const handleApprove = async () => {
     try {
-      await fetch(`http://localhost:8000/verification/${id}/approve`, { method: 'POST' });
+      await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/verification/${id}/approve`, { method: 'POST' });
       fetchDoc();
     } catch (err) { console.error(err); }
   };
 
   const handleReject = async () => {
     try {
-      await fetch(`http://localhost:8000/verification/${id}/reject`, { method: 'POST' });
+      await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/verification/${id}/reject`, { method: 'POST' });
       fetchDoc();
     } catch (err) { console.error(err); }
   };
 
   const handleSaveEdit = async () => {
     try {
-      await fetch(`http://localhost:8000/verification/${id}/update`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/verification/${id}/update`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ extracted_data: editData })
@@ -296,7 +296,7 @@ export default function ExtractedRecordPage() {
           </CardHeader>
           <CardContent className="p-6 flex justify-center">
             <img 
-              src={`http://localhost:8000/documents/${id}/image`} 
+              src={`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/documents/${id}/image`} 
               alt="Original Land Record" 
               className="max-w-full h-auto max-h-[800px] object-contain border border-ts-border rounded-lg shadow-sm"
               onError={(e) => {

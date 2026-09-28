@@ -28,7 +28,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const response = await fetch('http://localhost:8000/dashboard/stats');
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/dashboard/stats`);
         const data = await response.json();
         setStats(data.stats);
         setActivity(data.recent_activity || []);

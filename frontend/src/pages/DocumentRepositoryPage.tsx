@@ -20,7 +20,7 @@ export default function DocumentRepositoryPage() {
   const fetchDocuments = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/repository');
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'}/repository`);
       const data = await response.json();
       setDocuments(data.documents || []);
     } catch (err) {

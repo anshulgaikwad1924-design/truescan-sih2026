@@ -19,3 +19,6 @@ backend/uploads/
 .vscode/
 .DS_Store
 *.log
+
+# Firebase Credentials
+backend/firebase-adminsdk.json
