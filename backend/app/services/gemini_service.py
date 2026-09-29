@@ -14,8 +14,8 @@ def extract_structured_data(local_path: str) -> dict:
     """
     initialize_gemini()
     
-    # We use gemini-3.7-flash as the latest supported model
-    model = genai.GenerativeModel('gemini-3.7-flash')
+    # We use gemini-1.5-flash as the latest supported model
+    model = genai.GenerativeModel('gemini-1.5-flash')
     
     prompt = f"""
     You are an expert AI assistant specialized in digitizing Indian land records (7/12 extracts, Khasra, Khatauni, etc.).
