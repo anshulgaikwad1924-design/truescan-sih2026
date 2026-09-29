@@ -3,7 +3,7 @@ import tempfile
 import cv2
 import numpy as np
 import pytesseract
-import fitz  # PyMuPDF
+import pymupdf as fitz  # PyMuPDF
 from PIL import Image
 
 def preprocess_image(image_path: str) -> str:
