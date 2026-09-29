@@ -1,6 +1,9 @@
 import google.generativeai as genai
 import json
 import PIL.Image
+import pymupdf as fitz
+import os
+import io
 from app.core.config import settings
 
 def initialize_gemini():
@@ -10,7 +13,7 @@ def initialize_gemini():
 
 def extract_structured_data(local_path: str) -> dict:
     """
-    Sends the document image directly to Gemini 3.8 Flash to extract structured land record data natively.
+    Sends the document image directly to Gemini 1.5 Flash to extract structured land record data natively.
     """
     initialize_gemini()
     
@@ -27,11 +30,12 @@ def extract_structured_data(local_path: str) -> dict:
     If a field is not found or unreadable, set its value to null.
     Do not hallucinate or guess information.
 
-    For every field (except is_valid_document), extract it as an object containing BOTH the 'original' text exactly as written in the source language (e.g. Marathi/Hindi), AND the 'english' translation.
+    For every field (except is_valid_document and confidence_score), extract it as an object containing BOTH the 'original' text exactly as written in the source language (e.g. Marathi/Hindi), AND the 'english' translation.
     Example: "owner_name": {{ "original": "संतोष वसंतराव काळे", "english": "Santosh Vasantrao Kale" }}
 
     Required Fields:
     - is_valid_document: boolean (true if valid land record, false otherwise)
+    - confidence_score: integer between 0-100 representing your overall confidence in reading this document.
     - owner_name: The name of the land owner(s).
     - survey_number: Survey number or Khasra number.
     - area: The total area of the land (include units if present).
@@ -44,8 +48,17 @@ def extract_structured_data(local_path: str) -> dict:
     """
     
     try:
-        img = PIL.Image.open(local_path)
-        
+        # Handle PDFs by converting the first page to an image
+        if local_path.lower().endswith('.pdf'):
+            doc = fitz.open(local_path)
+            page = doc.load_page(0)
+            pix = page.get_pixmap()
+            img_data = pix.tobytes("png")
+            img = PIL.Image.open(io.BytesIO(img_data))
+            doc.close()
+        else:
+            img = PIL.Image.open(local_path)
+            
         response = model.generate_content(
             [prompt, img],
             generation_config=genai.types.GenerationConfig(
