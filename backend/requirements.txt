@@ -8,9 +8,9 @@ pydantic==2.13.5
 pydantic-settings==2.15.0
 python-dotenv==1.2.3
 python-multipart==0.0.32
-firebase-admin
-google-generativeai
-pytesseract
-opencv-python-headless
-pymupdf
-pillow
+firebase-admin==6.5.0
+google-generativeai==0.8.3
+pytesseract==0.3.13
+opencv-python-headless==5.0.0.93
+pymupdf==1.28.2
+pillow==12.3.0
