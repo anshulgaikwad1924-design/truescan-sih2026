@@ -23,12 +23,18 @@ export function Topbar() {
         </button>
         <div className="h-8 w-px bg-ts-border"></div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-ts-mint flex items-center justify-center border border-ts-border text-ts-text-primary">
-            <User className="w-4 h-4" />
-          </div>
-          <span className="text-sm font-medium text-ts-text-primary hidden sm:block mr-2">
-            {appUser?.displayName || 'Loading...'}
-          </span>
+          <button 
+            onClick={() => navigate('/profile')}
+            className="flex items-center gap-2 hover:bg-ts-sage/30 p-1 pr-2 rounded-full transition-colors focus:outline-none"
+            title="View Profile"
+          >
+            <div className="w-8 h-8 rounded-full bg-ts-mint flex items-center justify-center border border-ts-border text-ts-text-primary">
+              <User className="w-4 h-4" />
+            </div>
+            <span className="text-sm font-medium text-ts-text-primary hidden sm:block">
+              {appUser?.displayName || 'Loading...'}
+            </span>
+          </button>
           <button 
             onClick={handleLogout}
             title="Log out"

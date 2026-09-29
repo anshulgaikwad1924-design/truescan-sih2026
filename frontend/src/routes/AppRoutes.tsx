@@ -16,6 +16,7 @@ import AuditHistoryPage from '../pages/AuditHistoryPage';
 import AnalyticsPage from '../pages/AnalyticsPage';
 import UserManagementPage from '../pages/UserManagementPage';
 import SettingsPage from '../pages/SettingsPage';
+import ProfilePage from '../pages/ProfilePage';
 import { Layout } from '../components/layout/Layout';
 import { ProtectedRoute } from '../components/layout/ProtectedRoute';
 
@@ -42,6 +43,7 @@ export default function AppRoutes() {
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         </Route>
       </Route>
     </Routes>

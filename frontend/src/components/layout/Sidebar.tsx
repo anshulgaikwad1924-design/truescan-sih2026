@@ -7,7 +7,8 @@ import {
   Map as MapIcon,
   BarChart3,
   Settings,
-  History
+  History,
+  User
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
@@ -16,6 +17,7 @@ export function Sidebar() {
     { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { label: 'Upload', path: '/upload', icon: Upload },
     { label: 'History', path: '/documents', icon: FileText },
+    { label: 'Profile', path: '/profile', icon: User },
   ];
 
   return (
