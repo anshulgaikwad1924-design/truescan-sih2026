@@ -17,8 +17,8 @@ def extract_structured_data(local_path: str) -> dict:
     """
     initialize_gemini()
     
-    # We use gemini-2.5-flash as it has a higher daily quota (1500/day) compared to 3.8-flash (20/day)
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    # We use gemini-3.5-flash as it is available to new users and has a standard daily quota
+    model = genai.GenerativeModel('gemini-3.5-flash')
     
     prompt = f"""
     You are an expert AI assistant specialized in digitizing Indian land records (7/12 extracts, Khasra, Khatauni, etc.).
